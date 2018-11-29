@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TescosLittleHelper</string>
+    <string name="welcome">Welcome to Tesco\'s Little Helper!</string>
+    <string name="scan_item">Scan Item</string>
+    <string name="previous_items">Previous Items</string>
+    <string name="shopping_list">Shopping List</string>
+</resources>
