@@ -1,6 +1,9 @@
 package kandr.tescoslittlehelper.view;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -25,9 +28,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        requestPermissions();
     }
 
     private void initUiElements(){
         btnScanItem = findViewById(R.id.btnScanItem);
+    }
+
+    private void requestPermissions(){
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, PackageManager.PERMISSION_GRANTED);
     }
 }
