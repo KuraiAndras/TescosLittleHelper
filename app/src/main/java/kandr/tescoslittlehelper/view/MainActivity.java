@@ -37,6 +37,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void requestPermissions(){
-        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, PackageManager.PERMISSION_GRANTED);
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.VIBRATE}, PackageManager.PERMISSION_GRANTED);
     }
 }
