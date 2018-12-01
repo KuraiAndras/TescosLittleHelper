@@ -11,9 +11,12 @@ import java.util.List;
 
 import info.androidhive.barcode.BarcodeReader;
 import kandr.tescoslittlehelper.R;
+import kandr.tescoslittlehelper.data.ProductData;
+import kandr.tescoslittlehelper.services.NetworkManager;
+import kandr.tescoslittlehelper.services.ProductDataHolder;
 
-public class BarcodeScannerActivity extends AppCompatActivity implements BarcodeReader.BarcodeReaderListener {
-
+public class BarcodeScannerActivity extends AppCompatActivity implements BarcodeReader.BarcodeReaderListener, ProductDataHolder {
+    private ProductData productData = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +32,7 @@ public class BarcodeScannerActivity extends AppCompatActivity implements Barcode
 
     @Override
     public void onScanned(Barcode barcode) {
-        Toast.makeText(getApplicationContext(), barcode.displayValue, Toast.LENGTH_LONG).show();
+        productData = NetworkManager.getInstance().getProduct(barcode.displayValue);
     }
 
     @Override
@@ -50,5 +53,10 @@ public class BarcodeScannerActivity extends AppCompatActivity implements Barcode
     @Override
     public void onCameraPermissionDenied() {
         // camera permission denied
+    }
+
+    @Override
+    public ProductData getProductData() {
+        return productData;
     }
 }
