@@ -37,9 +37,10 @@ public class TescoHttpClient implements TescoProductApi {
 //        {
 //            System.out.println(e.getMessage());
 //        }
-        return new ProductData("Mocked Product",
+        return new ProductData(
+                "Mocked Product",
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
                 500,
-                "12345678910111213");
+                gtin);
     }
 }
