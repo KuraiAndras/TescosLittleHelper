@@ -1,9 +1,12 @@
 package kandr.tescoslittlehelper.view;
 
+import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.SparseArray;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.android.gms.vision.barcode.Barcode;
 
@@ -12,11 +15,12 @@ import java.util.List;
 import info.androidhive.barcode.BarcodeReader;
 import kandr.tescoslittlehelper.R;
 import kandr.tescoslittlehelper.data.ProductData;
+import kandr.tescoslittlehelper.helpers.DbHelper;
 import kandr.tescoslittlehelper.services.NetworkManager;
 import kandr.tescoslittlehelper.services.ProductDataHolder;
 
 public class BarcodeScannerActivity extends AppCompatActivity implements BarcodeReader.BarcodeReaderListener, ProductDataHolder {
-    private ProductData productData = null;
+    private Button btnAddMockedProduct;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,15 +28,23 @@ public class BarcodeScannerActivity extends AppCompatActivity implements Barcode
         setContentView(R.layout.activity_barcode_scanner);
 
         initUiElements();
+
+        btnAddMockedProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DbHelper.insertIntoDatabase(getApplicationContext(), DbHelper.getMockedProductData());
+            }
+        });
     }
 
     private void initUiElements() {
-
+        btnAddMockedProduct = findViewById(R.id.btnAddMockedProduct);
     }
 
     @Override
     public void onScanned(Barcode barcode) {
-        productData = NetworkManager.getInstance().getProduct(barcode.displayValue);
+        ProductData productData = NetworkManager.getInstance().getProduct(barcode.displayValue);
+        DbHelper.insertIntoDatabase(getApplicationContext(), productData);
     }
 
     @Override
@@ -57,6 +69,6 @@ public class BarcodeScannerActivity extends AppCompatActivity implements Barcode
 
     @Override
     public ProductData getProductData() {
-        return productData;
+        return null;
     }
 }

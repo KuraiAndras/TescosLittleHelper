@@ -7,8 +7,8 @@ import android.arch.persistence.room.PrimaryKey;
 
 @Entity(tableName = "productdata")
 public class ProductData {
-    @ColumnInfo(name = "id")
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
     public Long id;
 
     @ColumnInfo(name = "name")

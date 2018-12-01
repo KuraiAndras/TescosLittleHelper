@@ -17,9 +17,10 @@
             android:text="@string/scan_item" />
 
         <Button
+            android:id="@+id/btnScannedProducts"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/previous_items"/>
+            android:text="@string/scanned_items"/>
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

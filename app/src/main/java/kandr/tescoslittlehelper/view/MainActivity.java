@@ -13,6 +13,7 @@ import kandr.tescoslittlehelper.R;
 
 public class MainActivity extends AppCompatActivity {
     private Button btnScanItem;
+    private Button btnScannedProducts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,12 +29,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        btnScannedProducts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ScannedProductsActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         requestPermissions();
     }
 
     private void initUiElements(){
         btnScanItem = findViewById(R.id.btnScanItem);
+        btnScannedProducts = findViewById(R.id.btnScannedProducts);
     }
 
     private void requestPermissions(){

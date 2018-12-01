@@ -22,7 +22,13 @@
         app:line_speed="6"
         app:line_width="4"
         app:square_height="200"
-        app:square_width="200"/>
+        app:square_width="200" />
 
+    <Button
+        android:id="@+id/btnAddMockedProduct"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="@string/add_mocked_item"
+        />
 
 </android.support.constraint.ConstraintLayout>

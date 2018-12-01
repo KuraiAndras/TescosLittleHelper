@@ -1,11 +1,12 @@
 package kandr.tescoslittlehelper.services;
 
 import kandr.tescoslittlehelper.data.ProductData;
+import kandr.tescoslittlehelper.helpers.DbHelper;
 
 public class TescoHttpClient implements TescoProductApi {
     @Override
     public ProductData getProductData(String gtin) {
-        //TODO: make http request, if denied search in local db
+        //TODO: make http request, if fails search in local db
 //        HttpClient httpclient = HttpClients.createDefault();
 //
 //        try
@@ -38,11 +39,6 @@ public class TescoHttpClient implements TescoProductApi {
 //        {
 //            System.out.println(e.getMessage());
 //        }
-        return new ProductData(
-                "Mocked Product",
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                500,
-                gtin,
-                false);
+        return DbHelper.getMockedProductData(gtin);
     }
 }

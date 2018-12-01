@@ -20,10 +20,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.BarcodeScannerActivity"></activity>
+        <activity android:name=".view.BarcodeScannerActivity" />
 
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="barcode" />
+
+        <activity android:name=".view.ScannedProductsActivity"></activity>
     </application>
+
 </manifest>

@@ -1,4 +1,4 @@
-package kandr.tescoslittlehelper.view.adapter;
+package kandr.tescoslittlehelper.view.adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -50,9 +50,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         return items.size();
     }
 
-    public void addItem(ProductData item){
-        items.add(item);
-        notifyItemInserted(items.size() - 1);
+    public void removeItem(ProductData item){
+        int removalIndex = items.indexOf(item);
+        items.remove(item);
+        notifyItemInserted(removalIndex);
     }
 
     public void update(List<ProductData> productDataList){
