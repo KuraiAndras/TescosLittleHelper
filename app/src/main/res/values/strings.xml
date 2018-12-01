@@ -5,4 +5,7 @@
     <string name="previous_items">Previous Items</string>
     <string name="shopping_list">Shopping List</string>
     <string name="add_to_favourites">Add To Favourites</string>
+    <string name="details">Details</string>
+    <string name="delete">Delete</string>
+    <string name="add_to_cart">Add To cart</string>
 </resources>

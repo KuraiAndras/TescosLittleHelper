@@ -23,11 +23,15 @@ public class ProductData {
     @ColumnInfo(name = "gtin")
     public String gtin;
 
-    public ProductData(String name, String description, int price, String gtin) {
+    @ColumnInfo(name = "inCart")
+    public boolean inCart;
+
+    public ProductData(String name, String description, int price, String gtin, boolean inCart) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.gtin = gtin;
+        this.inCart = inCart;
     }
 
 

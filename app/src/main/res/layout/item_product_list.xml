@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingLeft="16dp"
+    android:paddingTop="8dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="8dp">
+
+    <LinearLayout
+        android:id="@+id/selectionDetails"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_weight="5"
+        android:orientation="vertical"
+        android:layout_gravity="center">
+
+        <TextView
+            android:id="@+id/productDataNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Mock Product" />
+        <TextView
+            android:id="@+id/productDataGtin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="123456789ABCD"/>
+        <TextView
+            android:id="@+id/productDataDescriptionTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Lorem ipsum dolor et..." />
+
+        <TextView
+            android:id="@+id/productDataPriceTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="500 Ft" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_weight="2"
+        android:text="@string/delete"
+        android:background="@drawable/delete_button"
+        android:layout_gravity="center"/>
+
+    <Button
+        android:id="@+id/addToCart"
+        android:layout_width="0dp"
+        android:layout_weight="3"
+        android:layout_height="50dp"
+        android:text="@string/add_to_cart"
+        android:layout_marginStart="5dp"
+        android:background="@drawable/add_to_cart_button"
+        android:layout_gravity="center"/>
+</LinearLayout>
