@@ -1,5 +1,6 @@
 package kandr.tescoslittlehelper.view.activities;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -71,5 +72,10 @@ public class EditProductActivity extends AppCompatActivity implements Updatable 
         editPrice.setText(String.valueOf(productData.price));
 
         this.productData = productData;
+    }
+
+    @Override
+    public void removeAll(Context applicationContext) {
+
     }
 }

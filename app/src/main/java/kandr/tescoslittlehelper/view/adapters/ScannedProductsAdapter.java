@@ -1,5 +1,6 @@
 package kandr.tescoslittlehelper.view.adapters;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -74,6 +75,10 @@ public class ScannedProductsAdapter extends RecyclerView.Adapter<ScannedProducts
     @Override
     public void update(ProductData productData) {
         notifyItemChanged(items.indexOf(productData));
+    }
+
+    @Override
+    public void removeAll(Context applicationContext) {
     }
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
