@@ -18,4 +18,5 @@
     <string name="don_t_save">Don\'t save</string>
     <string name="no_api_response">Something went wrong, we could not get answer from Tesco</string>
     <string name="save_anyway">Save anyway?</string>
+    <string name="product_in_cart">Product in Cart</string>
 </resources>

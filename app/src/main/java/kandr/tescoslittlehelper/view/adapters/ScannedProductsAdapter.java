@@ -46,11 +46,11 @@ public class ScannedProductsAdapter extends RecyclerView.Adapter<ScannedProducts
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         ProductData item = items.get(position);
         holder.productDataNameTextView.setText(item.name);
-        holder.productDataDescriptionTextView.setText(item.description);
+        holder.productDataDescriptionTextView.setText(String.format("%s...", item.description.substring(0, 15)));
         holder.productDataPriceTextView.setText(String.valueOf(item.price));
         holder.productDataGtin.setText(item.gtin);
         holder.addToCartButton.setEnabled(!item.inCart);
-
+        holder.addToCartButton.setText(item.inCart ? R.string.product_in_cart : R.string.add_to_cart);
         holder.item = item;
     }
 
