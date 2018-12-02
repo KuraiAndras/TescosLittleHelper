@@ -27,7 +27,8 @@
             android:value="barcode" />
 
         <activity android:name=".view.activities.ScannedProductsActivity" />
-        <activity android:name=".view.activities.CartActivity"></activity>
+        <activity android:name=".view.activities.CartActivity" />
+        <activity android:name=".view.activities.EditProductActivity"></activity>
     </application>
 
 </manifest>

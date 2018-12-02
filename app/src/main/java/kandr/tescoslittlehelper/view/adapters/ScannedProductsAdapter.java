@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -77,17 +78,18 @@ public class ScannedProductsAdapter extends RecyclerView.Adapter<ScannedProducts
         TextView productDataDescriptionTextView;
         TextView productDataPriceTextView;
         TextView productDataGtin;
-        Button deleteButton;
+        ImageButton scanEditProduct;
+        ImageButton deleteButton;
         Button addToCartButton;
 
         ProductViewHolder(final View itemView) {
             super(itemView);
             initUiElements();
 
-            selectionDetails.setOnClickListener(new View.OnClickListener() {
+            scanEditProduct.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
-                    //TODO: launch details view
+                public void onClick(View v) {
+                    //TODO: Launch edit activity
                 }
             });
 
@@ -115,6 +117,7 @@ public class ScannedProductsAdapter extends RecyclerView.Adapter<ScannedProducts
             productDataDescriptionTextView = itemView.findViewById(R.id.scannedProductDataDescriptionTextView);
             productDataPriceTextView = itemView.findViewById(R.id.scannedProductDataPriceTextView);
             productDataGtin = itemView.findViewById(R.id.scannedProductDataGtin);
+            scanEditProduct = itemView.findViewById(R.id.scanEditProduct);
             deleteButton = itemView.findViewById(R.id.scanDeleteButton);
             addToCartButton = itemView.findViewById(R.id.scanAddToCart);
         }

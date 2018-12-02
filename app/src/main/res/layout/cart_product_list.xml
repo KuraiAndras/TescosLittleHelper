@@ -44,7 +44,8 @@
         android:layout_height="50dp"
         android:layout_gravity="center_vertical"
         android:scaleType="fitXY"
-        android:src="@drawable/ic_delete_grey600_48dp" />
+        android:src="@drawable/ic_delete_grey600_48dp"
+        android:contentDescription="@string/delete" />
 
     <CheckBox
         android:id="@+id/cartCheckboxBought"
