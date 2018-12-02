@@ -10,4 +10,8 @@
     <string name="add_mocked_item">Add mocked item</string>
     <string name="bought">Bought</string>
     <string name="delete">Delete</string>
+    <string name="name">Name</string>
+    <string name="description">Description</string>
+    <string name="price">Price</string>
+    <string name="save">Save</string>
 </resources>

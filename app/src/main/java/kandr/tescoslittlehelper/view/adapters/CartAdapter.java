@@ -83,13 +83,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
             initUiElements();
 
-            selectionDetails.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    //TODO: launch details view
-                }
-            });
-
             cartRemoveFromCart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -102,7 +95,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             checkboxBought.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //TODO: update db
                     item.isBought = !item.isBought;
                     update(item);
                     DbManager.addOrUpdate(itemView.getContext(), item);

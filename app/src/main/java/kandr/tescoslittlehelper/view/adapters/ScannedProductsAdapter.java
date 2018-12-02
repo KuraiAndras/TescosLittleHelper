@@ -1,5 +1,6 @@
 package kandr.tescoslittlehelper.view.adapters;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import java.util.List;
 import kandr.tescoslittlehelper.R;
 import kandr.tescoslittlehelper.data.ProductData;
 import kandr.tescoslittlehelper.services.DbManager;
+import kandr.tescoslittlehelper.view.activities.EditProductActivity;
 
 public class ScannedProductsAdapter extends RecyclerView.Adapter<ScannedProductsAdapter.ProductViewHolder> implements MyAdapter {
     private final List<ProductData> items;
@@ -89,7 +91,8 @@ public class ScannedProductsAdapter extends RecyclerView.Adapter<ScannedProducts
             scanEditProduct.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //TODO: Launch edit activity
+                    Intent intent = new Intent(itemView.getContext(), EditProductActivity.class);
+                    itemView.getContext().startActivity(intent);
                 }
             });
 
