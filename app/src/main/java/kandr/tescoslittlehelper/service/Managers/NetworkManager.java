@@ -7,6 +7,7 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+//TODO: This should be a service
 public class NetworkManager {
     private static final String SERVICE_URL = "https://dev.tescolabs.com";
     //TODO: Email Tesco again for subscription key
