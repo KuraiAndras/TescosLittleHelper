@@ -49,38 +49,10 @@ public class DbManager {
                 false);
     }
 
-    public static ProductData getMockedProductData(String gtin) {
-        return new ProductData(
-                "Mocked Item",
-                "Lorem ipsum dolor et ami",
-                1000,
-                gtin,
-                false,
-                false);
-    }
-
     public static class DbNames {
         static final String ProductDatabase = "productdata";
     }
 
-
-    public static void getAll(final Context applicationContext) {
-        new AsyncTask<Void, Void, List<ProductData>>() {
-            @Override
-            protected List<ProductData> doInBackground(Void... voids) {
-                return getProductDataDatabaseInstance(applicationContext).productDataDao().getAll();
-            }
-        }.execute();
-    }
-
-    public static void get(final Context applicationContext, final String gtin) {
-        new AsyncTask<Void, Void, ProductData>() {
-            @Override
-            protected ProductData doInBackground(Void... voids) {
-                return getProductDataDatabaseInstance(applicationContext).productDataDao().get(gtin);
-            }
-        }.execute();
-    }
 
     public static void addOrUpdate(final Context applicationContext, final ProductData productData) {
         new AsyncTask<Void, Void, Boolean>() {
