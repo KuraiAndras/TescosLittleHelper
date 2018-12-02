@@ -11,7 +11,6 @@ import kandr.tescoslittlehelper.data.ProductData;
 import kandr.tescoslittlehelper.data.ProductDataDao;
 import kandr.tescoslittlehelper.data.ProductDataDatabase;
 import kandr.tescoslittlehelper.view.adapters.MyAdapter;
-import kandr.tescoslittlehelper.view.adapters.ScannedProductsAdapter;
 
 public class DbManager {
     private static ProductDataDatabase productDataDatabase;
@@ -45,6 +44,7 @@ public class DbManager {
                 "Lorem ipsum dolor et ami",
                 1000,
                 randomGtin,
+                false,
                 false);
     }
 
@@ -54,6 +54,7 @@ public class DbManager {
                 "Lorem ipsum dolor et ami",
                 1000,
                 gtin,
+                false,
                 false);
     }
 
@@ -89,7 +90,7 @@ public class DbManager {
                 ProductData data = dao.get(productData.gtin);
                 if (data == null) {
                     dao.insert(productData);
-                }else {
+                } else {
                     dao.update(productData);
                 }
                 return true;

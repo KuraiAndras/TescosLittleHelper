@@ -25,11 +25,15 @@ public class ProductData {
     @ColumnInfo(name = "inCart")
     public boolean inCart;
 
-    public ProductData(String name, String description, int price,@NonNull String gtin, boolean inCart) {
+    @ColumnInfo(name = "isBought")
+    public boolean isBought;
+
+    public ProductData(String name, String description, int price,@NonNull String gtin, boolean inCart, boolean isBought) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.gtin = gtin;
         this.inCart = inCart;
+        this.isBought = isBought;
     }
 }

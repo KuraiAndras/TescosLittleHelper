@@ -5,7 +5,7 @@ import android.arch.persistence.room.RoomDatabase;
 
 @Database(
         entities = {ProductData.class},
-        version = 2
+        version = 3
 )
 public abstract class ProductDataDatabase extends RoomDatabase {
     public abstract ProductDataDao productDataDao();
