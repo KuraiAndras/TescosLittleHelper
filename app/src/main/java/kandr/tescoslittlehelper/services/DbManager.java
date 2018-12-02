@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import java.util.List;
+import java.util.UUID;
 
 import kandr.tescoslittlehelper.data.ProductData;
 import kandr.tescoslittlehelper.data.ProductDataDatabase;
@@ -31,11 +32,13 @@ public class DbManager {
     }
 
     public static ProductData getMockedProductData() {
+        String randomGtin = UUID.randomUUID().toString();
+        randomGtin = randomGtin.substring(0, 12);
         return new ProductData(
                 "Mocked Item",
                 "Lorem ipsum dolor et ami",
                 1000,
-                "123456789ABCD",
+                randomGtin,
                 false);
     }
 

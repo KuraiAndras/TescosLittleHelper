@@ -41,6 +41,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.productDataNameTextView.setText(item.name);
         holder.productDataDescriptionTextView.setText(item.description);
         holder.productDataPriceTextView.setText(String.valueOf(item.price));
+        holder.productDataGtin.setText(item.gtin);
         holder.addToCartButton.setEnabled(!item.inCart);
 
         holder.item = item;
@@ -78,6 +79,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         TextView productDataNameTextView;
         TextView productDataDescriptionTextView;
         TextView productDataPriceTextView;
+        TextView productDataGtin;
         Button deleteButton;
         Button addToCartButton;
 
@@ -115,6 +117,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             productDataNameTextView = itemView.findViewById(R.id.productDataNameTextView);
             productDataDescriptionTextView = itemView.findViewById(R.id.productDataDescriptionTextView);
             productDataPriceTextView = itemView.findViewById(R.id.productDataPriceTextView);
+            productDataGtin = itemView.findViewById(R.id.productDataGtin);
             deleteButton = itemView.findViewById(R.id.deleteButton);
             addToCartButton = itemView.findViewById(R.id.addToCart);
         }
