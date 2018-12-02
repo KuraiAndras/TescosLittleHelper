@@ -16,10 +16,13 @@ import java.util.List;
 
 import kandr.tescoslittlehelper.R;
 import kandr.tescoslittlehelper.data.ProductData;
-import kandr.tescoslittlehelper.services.DbManager;
+import kandr.tescoslittlehelper.services.Managers.DbManager;
+import kandr.tescoslittlehelper.view.Updatable;
 import kandr.tescoslittlehelper.view.activities.EditProductActivity;
 
-public class ScannedProductsAdapter extends RecyclerView.Adapter<ScannedProductsAdapter.ProductViewHolder> implements MyAdapter {
+public class ScannedProductsAdapter extends RecyclerView.Adapter<ScannedProductsAdapter.ProductViewHolder> implements Updatable {
+    public static final String GTIN_MESSAGE = "GTIN_MESSAGE";
+
     private final List<ProductData> items;
 
     private ProductDataClickListener listener;
@@ -55,20 +58,21 @@ public class ScannedProductsAdapter extends RecyclerView.Adapter<ScannedProducts
         return items.size();
     }
 
-    private void removeItem(ProductData item){
+    private void removeItem(ProductData item) {
         int removalIndex = items.indexOf(item);
         items.remove(item);
         notifyItemRemoved(removalIndex);
     }
 
     @Override
-    public void update(List<ProductData> productDataList){
+    public void updateAll(List<ProductData> productDataList) {
         items.clear();
         items.addAll(productDataList);
         notifyDataSetChanged();
     }
 
-    private void update(ProductData productData){
+    @Override
+    public void update(ProductData productData) {
         notifyItemChanged(items.indexOf(productData));
     }
 
@@ -92,6 +96,7 @@ public class ScannedProductsAdapter extends RecyclerView.Adapter<ScannedProducts
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(itemView.getContext(), EditProductActivity.class);
+                    intent.putExtra(GTIN_MESSAGE, item.gtin);
                     itemView.getContext().startActivity(intent);
                 }
             });
@@ -114,7 +119,7 @@ public class ScannedProductsAdapter extends RecyclerView.Adapter<ScannedProducts
             });
         }
 
-        private void initUiElements(){
+        private void initUiElements() {
             selectionDetails = itemView.findViewById(R.id.selectionDetails);
             productDataNameTextView = itemView.findViewById(R.id.scannedProductDataNameTextView);
             productDataDescriptionTextView = itemView.findViewById(R.id.scannedProductDataDescriptionTextView);

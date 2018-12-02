@@ -17,8 +17,8 @@ import java.util.List;
 import info.androidhive.barcode.BarcodeReader;
 import kandr.tescoslittlehelper.R;
 import kandr.tescoslittlehelper.data.ProductData;
-import kandr.tescoslittlehelper.services.DbManager;
-import kandr.tescoslittlehelper.services.NetworkManager;
+import kandr.tescoslittlehelper.services.Managers.DbManager;
+import kandr.tescoslittlehelper.services.Managers.NetworkManager;
 import kandr.tescoslittlehelper.services.ProductDataHolder;
 
 public class BarcodeScannerActivity extends AppCompatActivity implements BarcodeReader.BarcodeReaderListener, ProductDataHolder {

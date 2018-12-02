@@ -1,6 +1,5 @@
 package kandr.tescoslittlehelper.view.adapters;
 
-import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,9 +15,10 @@ import java.util.List;
 
 import kandr.tescoslittlehelper.R;
 import kandr.tescoslittlehelper.data.ProductData;
-import kandr.tescoslittlehelper.services.DbManager;
+import kandr.tescoslittlehelper.services.Managers.DbManager;
+import kandr.tescoslittlehelper.view.Updatable;
 
-public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> implements MyAdapter {
+public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> implements Updatable {
     private final List<ProductData> items;
 
     private ProductDataClickListener listener;
@@ -58,13 +58,14 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         notifyItemRemoved(removalIndex);
     }
 
-    public void update(List<ProductData> productDataList) {
+    public void updateAll(List<ProductData> productDataList) {
         items.clear();
         items.addAll(productDataList);
         notifyDataSetChanged();
     }
 
-    private void update(ProductData productData) {
+    @Override
+    public void update(ProductData productData) {
         notifyItemChanged(items.indexOf(productData));
     }
 

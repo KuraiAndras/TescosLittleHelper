@@ -1,4 +1,4 @@
-package kandr.tescoslittlehelper.services;
+package kandr.tescoslittlehelper.services.Managers;
 
 import android.arch.persistence.room.Room;
 import android.content.Context;
@@ -10,7 +10,7 @@ import java.util.UUID;
 import kandr.tescoslittlehelper.data.ProductData;
 import kandr.tescoslittlehelper.data.ProductDataDao;
 import kandr.tescoslittlehelper.data.ProductDataDatabase;
-import kandr.tescoslittlehelper.view.adapters.MyAdapter;
+import kandr.tescoslittlehelper.view.Updatable;
 
 public class DbManager {
     private static ProductDataDatabase productDataDatabase;
@@ -108,7 +108,7 @@ public class DbManager {
         }.execute();
     }
 
-    public static void loadAllItemsInTheBackground(final Context applicationContext, final MyAdapter scannedProductsAdapter) {
+    public static void loadAllItemsInTheBackground(final Context applicationContext, final Updatable updatable) {
         new AsyncTask<Void, Void, List<ProductData>>() {
 
             @Override
@@ -118,12 +118,27 @@ public class DbManager {
 
             @Override
             protected void onPostExecute(List<ProductData> productList) {
-                scannedProductsAdapter.update(productList);
+                updatable.updateAll(productList);
             }
         }.execute();
     }
 
-    public static void loadCartItemsInTheBackground(final Context applicationContext, final MyAdapter scannedProductsAdapter) {
+    public static void loadItemInTheBackground(final Context applicationContext, final Updatable updatable, final String gtin) {
+        new AsyncTask<Void, Void, ProductData>() {
+
+            @Override
+            protected ProductData doInBackground(Void... voids) {
+                return getProductDataDatabaseInstance(applicationContext).productDataDao().get(gtin);
+            }
+
+            @Override
+            protected void onPostExecute(ProductData productData) {
+                updatable.update(productData);
+            }
+        }.execute();
+    }
+
+    public static void loadCartItemsInTheBackground(final Context applicationContext, final Updatable updatable) {
         new AsyncTask<Void, Void, List<ProductData>>() {
 
             @Override
@@ -133,7 +148,7 @@ public class DbManager {
 
             @Override
             protected void onPostExecute(List<ProductData> productList) {
-                scannedProductsAdapter.update(productList);
+                updatable.updateAll(productList);
             }
         }.execute();
     }

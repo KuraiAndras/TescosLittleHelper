@@ -7,7 +7,7 @@ import android.support.v7.widget.RecyclerView;
 
 import kandr.tescoslittlehelper.R;
 import kandr.tescoslittlehelper.data.ProductData;
-import kandr.tescoslittlehelper.services.DbManager;
+import kandr.tescoslittlehelper.services.Managers.DbManager;
 import kandr.tescoslittlehelper.view.adapters.ProductDataClickListener;
 import kandr.tescoslittlehelper.view.adapters.ScannedProductsAdapter;
 
@@ -29,6 +29,13 @@ public class ScannedProductsActivity extends AppCompatActivity implements Produc
         DbManager.loadAllItemsInTheBackground(getApplicationContext(), adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+
+        DbManager.loadAllItemsInTheBackground(getApplicationContext(), adapter);
     }
 
     @Override

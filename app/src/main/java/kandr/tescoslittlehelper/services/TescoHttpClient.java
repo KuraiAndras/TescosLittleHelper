@@ -1,6 +1,7 @@
 package kandr.tescoslittlehelper.services;
 
 import kandr.tescoslittlehelper.data.ProductData;
+import kandr.tescoslittlehelper.services.Managers.DbManager;
 
 public class TescoHttpClient implements TescoProductApi {
     @Override

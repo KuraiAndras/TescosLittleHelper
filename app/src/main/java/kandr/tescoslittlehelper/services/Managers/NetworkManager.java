@@ -1,6 +1,8 @@
-package kandr.tescoslittlehelper.services;
+package kandr.tescoslittlehelper.services.Managers;
 
 import kandr.tescoslittlehelper.data.ProductData;
+import kandr.tescoslittlehelper.services.TescoHttpClient;
+import kandr.tescoslittlehelper.services.TescoProductApi;
 
 public class NetworkManager {
     private static NetworkManager instance;

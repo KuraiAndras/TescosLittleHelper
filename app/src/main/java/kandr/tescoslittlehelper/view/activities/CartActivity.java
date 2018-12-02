@@ -7,7 +7,7 @@ import android.support.v7.widget.RecyclerView;
 
 import kandr.tescoslittlehelper.R;
 import kandr.tescoslittlehelper.data.ProductData;
-import kandr.tescoslittlehelper.services.DbManager;
+import kandr.tescoslittlehelper.services.Managers.DbManager;
 import kandr.tescoslittlehelper.view.adapters.CartAdapter;
 import kandr.tescoslittlehelper.view.adapters.ProductDataClickListener;
 
