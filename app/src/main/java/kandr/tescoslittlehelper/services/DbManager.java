@@ -31,6 +31,9 @@ public class DbManager {
         ).build();
     }
 
+    private DbManager() {
+    }
+
     public static ProductData getMockedProductData() {
         String randomGtin = UUID.randomUUID().toString();
         randomGtin = randomGtin.substring(0, 12);
@@ -95,7 +98,7 @@ public class DbManager {
     public static void removeFromDatabase(final Context applicationContext, final ProductData item) {
         new AsyncTask<Void, Void, Boolean>() {
             @Override
-            protected Boolean doInBackground(Void... voids){
+            protected Boolean doInBackground(Void... voids) {
                 getProductDataDatabaseInstance(applicationContext).productDataDao().deleteItem(item);
                 return true;
             }
