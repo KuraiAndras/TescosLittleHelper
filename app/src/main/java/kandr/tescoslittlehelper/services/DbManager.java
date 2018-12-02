@@ -10,6 +10,7 @@ import java.util.UUID;
 import kandr.tescoslittlehelper.data.ProductData;
 import kandr.tescoslittlehelper.data.ProductDataDao;
 import kandr.tescoslittlehelper.data.ProductDataDatabase;
+import kandr.tescoslittlehelper.view.adapters.MyAdapter;
 import kandr.tescoslittlehelper.view.adapters.ScannedProductsAdapter;
 
 public class DbManager {
@@ -88,6 +89,8 @@ public class DbManager {
                 ProductData data = dao.get(productData.gtin);
                 if (data == null) {
                     dao.insert(productData);
+                }else {
+                    dao.update(productData);
                 }
                 return true;
             }
@@ -104,12 +107,27 @@ public class DbManager {
         }.execute();
     }
 
-    public static void loadItemsInTheBackground(final Context applicationContext, final ScannedProductsAdapter scannedProductsAdapter) {
+    public static void loadAllItemsInTheBackground(final Context applicationContext, final MyAdapter scannedProductsAdapter) {
         new AsyncTask<Void, Void, List<ProductData>>() {
 
             @Override
             protected List<ProductData> doInBackground(Void... voids) {
                 return getProductDataDatabaseInstance(applicationContext).productDataDao().getAll();
+            }
+
+            @Override
+            protected void onPostExecute(List<ProductData> productList) {
+                scannedProductsAdapter.update(productList);
+            }
+        }.execute();
+    }
+
+    public static void loadCartItemsInTheBackground(final Context applicationContext, final MyAdapter scannedProductsAdapter) {
+        new AsyncTask<Void, Void, List<ProductData>>() {
+
+            @Override
+            protected List<ProductData> doInBackground(Void... voids) {
+                return getProductDataDatabaseInstance(applicationContext).productDataDao().getAllCart(true);
             }
 
             @Override

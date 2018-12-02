@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.MainActivity">
+    tools:context=".view.activities.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,6 +22,7 @@
             android:layout_height="wrap_content"
             android:text="@string/scanned_items"/>
         <Button
+            android:id="@+id/btnShoppingList"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/shopping_list"/>

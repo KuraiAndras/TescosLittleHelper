@@ -1,4 +1,4 @@
-package kandr.tescoslittlehelper.view;
+package kandr.tescoslittlehelper.view.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,9 +8,10 @@ import android.support.v7.widget.RecyclerView;
 import kandr.tescoslittlehelper.R;
 import kandr.tescoslittlehelper.data.ProductData;
 import kandr.tescoslittlehelper.services.DbManager;
+import kandr.tescoslittlehelper.view.adapters.ProductDataClickListener;
 import kandr.tescoslittlehelper.view.adapters.ScannedProductsAdapter;
 
-public class ScannedProductsActivity extends AppCompatActivity implements ScannedProductsAdapter.ProductDataClickListener {
+public class ScannedProductsActivity extends AppCompatActivity implements ProductDataClickListener {
     private RecyclerView recyclerView;
     private ScannedProductsAdapter adapter;
 
@@ -25,7 +26,7 @@ public class ScannedProductsActivity extends AppCompatActivity implements Scanne
     private void initRecyclerView() {
         recyclerView = findViewById(R.id.ScannedProductsRecyclerView);
         adapter = new ScannedProductsAdapter(this);
-        DbManager.loadItemsInTheBackground(getApplicationContext(), adapter);
+        DbManager.loadAllItemsInTheBackground(getApplicationContext(), adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
     }

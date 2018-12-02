@@ -13,21 +13,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.MainActivity">
+        <activity android:name=".view.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.BarcodeScannerActivity" />
+        <activity android:name=".view.activities.BarcodeScannerActivity" />
 
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="barcode" />
 
-        <activity android:name=".view.ScannedProductsActivity" />
-        <activity android:name=".CartActivity"></activity>
+        <activity android:name=".view.activities.ScannedProductsActivity" />
+        <activity android:name=".view.activities.CartActivity"></activity>
     </application>
 
 </manifest>

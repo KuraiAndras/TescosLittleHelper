@@ -1,4 +1,4 @@
-package kandr.tescoslittlehelper.view;
+package kandr.tescoslittlehelper.view.activities;
 
 import android.content.Context;
 import android.os.Bundle;

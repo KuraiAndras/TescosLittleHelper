@@ -1,4 +1,4 @@
-package kandr.tescoslittlehelper.view;
+package kandr.tescoslittlehelper.view.activities;
 
 import android.Manifest;
 import android.content.Intent;
@@ -14,6 +14,7 @@ import kandr.tescoslittlehelper.R;
 public class MainActivity extends AppCompatActivity {
     private Button btnScanItem;
     private Button btnScannedProducts;
+    private Button btnShoppingList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +38,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btnShoppingList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CartActivity.class);
+                startActivity(intent);
+            }
+        });
 
         requestPermissions();
     }
 
+
+
     private void initUiElements(){
         btnScanItem = findViewById(R.id.btnScanItem);
         btnScannedProducts = findViewById(R.id.btnScannedProducts);
+        btnShoppingList = findViewById(R.id.btnShoppingList);
     }
 
     private void requestPermissions(){

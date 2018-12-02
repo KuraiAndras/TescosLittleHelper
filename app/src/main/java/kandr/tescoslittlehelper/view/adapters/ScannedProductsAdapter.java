@@ -16,7 +16,7 @@ import kandr.tescoslittlehelper.R;
 import kandr.tescoslittlehelper.data.ProductData;
 import kandr.tescoslittlehelper.services.DbManager;
 
-public class ScannedProductsAdapter extends RecyclerView.Adapter<ScannedProductsAdapter.ProductViewHolder> {
+public class ScannedProductsAdapter extends RecyclerView.Adapter<ScannedProductsAdapter.ProductViewHolder> implements MyAdapter {
     private final List<ProductData> items;
 
     private ProductDataClickListener listener;
@@ -31,7 +31,7 @@ public class ScannedProductsAdapter extends RecyclerView.Adapter<ScannedProducts
     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater
                 .from(parent.getContext())
-                .inflate(R.layout.item_product_list, parent, false);
+                .inflate(R.layout.scanned_product_list, parent, false);
         return new ProductViewHolder(itemView);
     }
 
@@ -58,6 +58,7 @@ public class ScannedProductsAdapter extends RecyclerView.Adapter<ScannedProducts
         notifyItemRemoved(removalIndex);
     }
 
+    @Override
     public void update(List<ProductData> productDataList){
         items.clear();
         items.addAll(productDataList);
@@ -66,10 +67,6 @@ public class ScannedProductsAdapter extends RecyclerView.Adapter<ScannedProducts
 
     private void update(ProductData productData){
         notifyItemChanged(items.indexOf(productData));
-    }
-
-    public interface ProductDataClickListener{
-        void onItemChanged(ProductData item);
     }
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
@@ -114,12 +111,12 @@ public class ScannedProductsAdapter extends RecyclerView.Adapter<ScannedProducts
 
         private void initUiElements(){
             selectionDetails = itemView.findViewById(R.id.selectionDetails);
-            productDataNameTextView = itemView.findViewById(R.id.productDataNameTextView);
-            productDataDescriptionTextView = itemView.findViewById(R.id.productDataDescriptionTextView);
-            productDataPriceTextView = itemView.findViewById(R.id.productDataPriceTextView);
-            productDataGtin = itemView.findViewById(R.id.productDataGtin);
-            deleteButton = itemView.findViewById(R.id.deleteButton);
-            addToCartButton = itemView.findViewById(R.id.addToCart);
+            productDataNameTextView = itemView.findViewById(R.id.scannedProductDataNameTextView);
+            productDataDescriptionTextView = itemView.findViewById(R.id.scannedProductDataDescriptionTextView);
+            productDataPriceTextView = itemView.findViewById(R.id.scannedProductDataPriceTextView);
+            productDataGtin = itemView.findViewById(R.id.scannedProductDataGtin);
+            deleteButton = itemView.findViewById(R.id.scanDeleteButton);
+            addToCartButton = itemView.findViewById(R.id.scanAddToCart);
         }
     }
 }
