@@ -8,11 +8,11 @@ import android.support.v7.widget.RecyclerView;
 import kandr.tescoslittlehelper.R;
 import kandr.tescoslittlehelper.data.ProductData;
 import kandr.tescoslittlehelper.services.DbManager;
-import kandr.tescoslittlehelper.view.adapters.ProductAdapter;
+import kandr.tescoslittlehelper.view.adapters.ScannedProductsAdapter;
 
-public class ScannedProductsActivity extends AppCompatActivity implements ProductAdapter.ProductDataClickListener {
+public class ScannedProductsActivity extends AppCompatActivity implements ScannedProductsAdapter.ProductDataClickListener {
     private RecyclerView recyclerView;
-    private ProductAdapter adapter;
+    private ScannedProductsAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,7 @@ public class ScannedProductsActivity extends AppCompatActivity implements Produc
 
     private void initRecyclerView() {
         recyclerView = findViewById(R.id.ScannedProductsRecyclerView);
-        adapter = new ProductAdapter(this);
+        adapter = new ScannedProductsAdapter(this);
         DbManager.loadItemsInTheBackground(getApplicationContext(), adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
@@ -32,6 +32,6 @@ public class ScannedProductsActivity extends AppCompatActivity implements Produc
 
     @Override
     public void onItemChanged(final ProductData item) {
-        DbManager.onItemChanged(getApplicationContext(), item);
+        DbManager.addOrUpdate(getApplicationContext(), item);
     }
 }

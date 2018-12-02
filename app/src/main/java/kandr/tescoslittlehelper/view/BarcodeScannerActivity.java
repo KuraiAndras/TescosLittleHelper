@@ -34,7 +34,7 @@ public class BarcodeScannerActivity extends AppCompatActivity implements Barcode
         btnAddMockedProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DbManager.insert(getApplicationContext(), DbManager.getMockedProductData());
+                DbManager.addOrUpdate(getApplicationContext(), DbManager.getMockedProductData());
                 vibrateAndFinish();
             }
         });
@@ -55,7 +55,7 @@ public class BarcodeScannerActivity extends AppCompatActivity implements Barcode
     @Override
     public void onScanned(Barcode barcode) {
         ProductData productData = NetworkManager.getInstance().getProduct(barcode.displayValue);
-        DbManager.insert(getApplicationContext(), productData);
+        DbManager.addOrUpdate(getApplicationContext(), productData);
         vibrateAndFinish();
     }
 

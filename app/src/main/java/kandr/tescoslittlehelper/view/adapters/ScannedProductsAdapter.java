@@ -16,12 +16,12 @@ import kandr.tescoslittlehelper.R;
 import kandr.tescoslittlehelper.data.ProductData;
 import kandr.tescoslittlehelper.services.DbManager;
 
-public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
+public class ScannedProductsAdapter extends RecyclerView.Adapter<ScannedProductsAdapter.ProductViewHolder> {
     private final List<ProductData> items;
 
     private ProductDataClickListener listener;
 
-    public ProductAdapter(ProductDataClickListener listener) {
+    public ScannedProductsAdapter(ProductDataClickListener listener) {
         this.listener = listener;
         items = new ArrayList<>();
     }
@@ -52,7 +52,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         return items.size();
     }
 
-    public void removeItem(ProductData item){
+    private void removeItem(ProductData item){
         int removalIndex = items.indexOf(item);
         items.remove(item);
         notifyItemRemoved(removalIndex);
@@ -64,7 +64,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         notifyDataSetChanged();
     }
 
-    public void update(ProductData productData){
+    private void update(ProductData productData){
         notifyItemChanged(items.indexOf(productData));
     }
 
@@ -98,7 +98,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 @Override
                 public void onClick(View view) {
                     removeItem(item);
-                    DbManager.removeFromDatabase(itemView.getContext(), item);
+                    DbManager.delete(itemView.getContext(), item);
                 }
             });
 

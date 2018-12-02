@@ -26,7 +26,8 @@
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="barcode" />
 
-        <activity android:name=".view.ScannedProductsActivity"></activity>
+        <activity android:name=".view.ScannedProductsActivity" />
+        <activity android:name=".CartActivity"></activity>
     </application>
 
 </manifest>

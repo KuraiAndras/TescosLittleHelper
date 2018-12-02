@@ -10,7 +10,7 @@ import java.util.UUID;
 import kandr.tescoslittlehelper.data.ProductData;
 import kandr.tescoslittlehelper.data.ProductDataDao;
 import kandr.tescoslittlehelper.data.ProductDataDatabase;
-import kandr.tescoslittlehelper.view.adapters.ProductAdapter;
+import kandr.tescoslittlehelper.view.adapters.ScannedProductsAdapter;
 
 public class DbManager {
     private static ProductDataDatabase productDataDatabase;
@@ -60,14 +60,33 @@ public class DbManager {
         static final String ProductDatabase = "productdata";
     }
 
-    public static void insert(final Context applicationContext, final ProductData productData) {
+
+    public static void getAll(final Context applicationContext) {
+        new AsyncTask<Void, Void, List<ProductData>>() {
+            @Override
+            protected List<ProductData> doInBackground(Void... voids) {
+                return getProductDataDatabaseInstance(applicationContext).productDataDao().getAll();
+            }
+        }.execute();
+    }
+
+    public static void get(final Context applicationContext, final String gtin) {
+        new AsyncTask<Void, Void, ProductData>() {
+            @Override
+            protected ProductData doInBackground(Void... voids) {
+                return getProductDataDatabaseInstance(applicationContext).productDataDao().get(gtin);
+            }
+        }.execute();
+    }
+
+    public static void addOrUpdate(final Context applicationContext, final ProductData productData) {
         new AsyncTask<Void, Void, Boolean>() {
 
             @Override
             protected Boolean doInBackground(Void... voids) {
                 ProductDataDao dao = getProductDataDatabaseInstance(applicationContext).productDataDao();
                 ProductData data = dao.get(productData.gtin);
-                if(data == null){
+                if (data == null) {
                     dao.insert(productData);
                 }
                 return true;
@@ -75,7 +94,17 @@ public class DbManager {
         }.execute();
     }
 
-    public static void loadItemsInTheBackground(final Context applicationContext, final ProductAdapter productAdapter) {
+    public static void delete(final Context applicationContext, final ProductData item) {
+        new AsyncTask<Void, Void, Boolean>() {
+            @Override
+            protected Boolean doInBackground(Void... voids) {
+                getProductDataDatabaseInstance(applicationContext).productDataDao().deleteItem(item);
+                return true;
+            }
+        }.execute();
+    }
+
+    public static void loadItemsInTheBackground(final Context applicationContext, final ScannedProductsAdapter scannedProductsAdapter) {
         new AsyncTask<Void, Void, List<ProductData>>() {
 
             @Override
@@ -84,29 +113,8 @@ public class DbManager {
             }
 
             @Override
-            protected void onPostExecute(List<ProductData> productDatas) {
-                productAdapter.update(productDatas);
-            }
-        }.execute();
-    }
-
-    public static void onItemChanged(final Context applicationContext, final ProductData item) {
-        new AsyncTask<Void, Void, Boolean>() {
-
-            @Override
-            protected Boolean doInBackground(Void... voids) {
-                getProductDataDatabaseInstance(applicationContext).productDataDao().update(item);
-                return true;
-            }
-        }.execute();
-    }
-
-    public static void removeFromDatabase(final Context applicationContext, final ProductData item) {
-        new AsyncTask<Void, Void, Boolean>() {
-            @Override
-            protected Boolean doInBackground(Void... voids) {
-                getProductDataDatabaseInstance(applicationContext).productDataDao().deleteItem(item);
-                return true;
+            protected void onPostExecute(List<ProductData> productList) {
+                scannedProductsAdapter.update(productList);
             }
         }.execute();
     }
