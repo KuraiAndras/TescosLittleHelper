@@ -11,7 +11,7 @@ import java.util.List;
 
 import kandr.tescoslittlehelper.R;
 import kandr.tescoslittlehelper.data.ProductData;
-import kandr.tescoslittlehelper.services.Managers.DbManager;
+import kandr.tescoslittlehelper.service.Managers.DbManager;
 import kandr.tescoslittlehelper.view.Updatable;
 import kandr.tescoslittlehelper.view.adapters.ScannedProductsAdapter;
 
@@ -54,10 +54,10 @@ public class EditProductActivity extends AppCompatActivity implements Updatable 
     }
 
     private void initUiElements() {
-        editPrice = findViewById(R.id.editPrice);
-        editDescription = findViewById(R.id.editDescription);
-        editName = findViewById(R.id.editName);
-        saveEdit = findViewById(R.id.saveEdit);
+        editPrice = findViewById(R.id.editEditPrice);
+        editDescription = findViewById(R.id.editEditDescription);
+        editName = findViewById(R.id.edtEditName);
+        saveEdit = findViewById(R.id.editSaveEdit);
     }
 
     @Override

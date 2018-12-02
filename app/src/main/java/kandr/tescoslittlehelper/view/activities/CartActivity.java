@@ -9,7 +9,7 @@ import android.widget.Button;
 
 import kandr.tescoslittlehelper.R;
 import kandr.tescoslittlehelper.data.ProductData;
-import kandr.tescoslittlehelper.services.Managers.DbManager;
+import kandr.tescoslittlehelper.service.Managers.DbManager;
 import kandr.tescoslittlehelper.view.Updatable;
 import kandr.tescoslittlehelper.view.adapters.CartAdapter;
 import kandr.tescoslittlehelper.view.adapters.ProductDataClickListener;

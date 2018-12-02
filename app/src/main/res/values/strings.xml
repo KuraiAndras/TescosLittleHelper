@@ -15,4 +15,7 @@
     <string name="price">Price</string>
     <string name="save">Save</string>
     <string name="clear_all">Clear All</string>
+    <string name="don_t_save">Don\'t save</string>
+    <string name="no_api_response">Something went wrong, we could not get answer from Tesco</string>
+    <string name="save_anyway">Save anyway?</string>
 </resources>

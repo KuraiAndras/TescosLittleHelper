@@ -17,12 +17,12 @@ import java.util.List;
 
 import kandr.tescoslittlehelper.R;
 import kandr.tescoslittlehelper.data.ProductData;
-import kandr.tescoslittlehelper.services.Managers.DbManager;
+import kandr.tescoslittlehelper.service.Managers.DbManager;
 import kandr.tescoslittlehelper.view.Updatable;
 import kandr.tescoslittlehelper.view.activities.EditProductActivity;
 
 public class ScannedProductsAdapter extends RecyclerView.Adapter<ScannedProductsAdapter.ProductViewHolder> implements Updatable {
-    public static final String GTIN_MESSAGE = "GTIN_MESSAGE";
+    public static final String GTIN_MESSAGE = "kandr.tescoslittlehelper.view.adapters.ScannedProductsAdapter.GTIN_MESSAGE";
 
     private final List<ProductData> items;
 

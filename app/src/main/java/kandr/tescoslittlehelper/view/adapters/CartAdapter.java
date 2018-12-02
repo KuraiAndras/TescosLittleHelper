@@ -16,7 +16,7 @@ import java.util.List;
 
 import kandr.tescoslittlehelper.R;
 import kandr.tescoslittlehelper.data.ProductData;
-import kandr.tescoslittlehelper.services.Managers.DbManager;
+import kandr.tescoslittlehelper.service.Managers.DbManager;
 import kandr.tescoslittlehelper.view.Updatable;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> implements Updatable {

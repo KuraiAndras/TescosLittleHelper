@@ -28,7 +28,8 @@
 
         <activity android:name=".view.activities.ScannedProductsActivity" />
         <activity android:name=".view.activities.CartActivity" />
-        <activity android:name=".view.activities.EditProductActivity"></activity>
+        <activity android:name=".view.activities.EditProductActivity" />
+        <activity android:name=".view.activities.SaveProductActivity"></activity>
     </application>
 
 </manifest>

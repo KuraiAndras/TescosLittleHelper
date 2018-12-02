@@ -1,4 +1,4 @@
-package kandr.tescoslittlehelper.services.Managers;
+package kandr.tescoslittlehelper.service.Managers;
 
 import android.arch.persistence.room.Room;
 import android.content.Context;
@@ -12,6 +12,7 @@ import kandr.tescoslittlehelper.data.ProductDataDao;
 import kandr.tescoslittlehelper.data.ProductDataDatabase;
 import kandr.tescoslittlehelper.view.Updatable;
 
+//TODO: this should be a service class and accessed through an interface
 public class DbManager {
     private static ProductDataDatabase productDataDatabase;
 
@@ -110,7 +111,6 @@ public class DbManager {
 
     public static void loadAllItemsInTheBackground(final Context applicationContext, final Updatable updatable) {
         new AsyncTask<Void, Void, List<ProductData>>() {
-
             @Override
             protected List<ProductData> doInBackground(Void... voids) {
                 return getProductDataDatabaseInstance(applicationContext).productDataDao().getAll();
@@ -125,7 +125,6 @@ public class DbManager {
 
     public static void loadItemInTheBackground(final Context applicationContext, final Updatable updatable, final String gtin) {
         new AsyncTask<Void, Void, ProductData>() {
-
             @Override
             protected ProductData doInBackground(Void... voids) {
                 return getProductDataDatabaseInstance(applicationContext).productDataDao().get(gtin);
@@ -140,7 +139,6 @@ public class DbManager {
 
     public static void loadCartItemsInTheBackground(final Context applicationContext, final Updatable updatable) {
         new AsyncTask<Void, Void, List<ProductData>>() {
-
             @Override
             protected List<ProductData> doInBackground(Void... voids) {
                 return getProductDataDatabaseInstance(applicationContext).productDataDao().getAllCart(true);
