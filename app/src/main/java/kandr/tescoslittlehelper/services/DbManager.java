@@ -1,4 +1,4 @@
-package kandr.tescoslittlehelper.helpers;
+package kandr.tescoslittlehelper.services;
 
 import android.arch.persistence.room.Room;
 import android.content.Context;
@@ -11,7 +11,7 @@ import kandr.tescoslittlehelper.data.ProductData;
 import kandr.tescoslittlehelper.data.ProductDataDatabase;
 import kandr.tescoslittlehelper.view.adapters.ProductAdapter;
 
-public class DbHelper {
+public class DbManager {
     private static ProductDataDatabase productDataDatabase;
 
     private static ProductDataDatabase getProductDataDatabaseInstance(Context context) {
@@ -63,7 +63,7 @@ public class DbHelper {
         }.execute();
     }
 
-    public static void loadItemsInTheBackground(final Context applicationContext, final ProductAdapter productAdapter){
+    public static void loadItemsInTheBackground(final Context applicationContext, final ProductAdapter productAdapter) {
         new AsyncTask<Void, Void, List<ProductData>>() {
 
             @Override
@@ -78,7 +78,7 @@ public class DbHelper {
         }.execute();
     }
 
-    public static void onItemChanged(final Context applicationContext,final ProductData item){
+    public static void onItemChanged(final Context applicationContext, final ProductData item) {
         new AsyncTask<Void, Void, Boolean>() {
 
             @Override
@@ -86,10 +86,15 @@ public class DbHelper {
                 getProductDataDatabaseInstance(applicationContext).productDataDao().update(item);
                 return true;
             }
+        }.execute();
+    }
 
+    public static void removeFromDatabase(final Context applicationContext, final ProductData item) {
+        new AsyncTask<Void, Void, Boolean>() {
             @Override
-            protected void onPostExecute(Boolean isSuccessful) {
-                Log.d("MainActivity", "ShoppingItem update was successful");
+            protected Boolean doInBackground(Void... voids){
+                getProductDataDatabaseInstance(applicationContext).productDataDao().deleteItem(item);
+                return true;
             }
         }.execute();
     }

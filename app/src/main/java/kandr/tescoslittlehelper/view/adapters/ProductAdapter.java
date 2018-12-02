@@ -14,6 +14,7 @@ import java.util.List;
 
 import kandr.tescoslittlehelper.R;
 import kandr.tescoslittlehelper.data.ProductData;
+import kandr.tescoslittlehelper.services.DbManager;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
     private final List<ProductData> items;
@@ -53,13 +54,17 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public void removeItem(ProductData item){
         int removalIndex = items.indexOf(item);
         items.remove(item);
-        notifyItemInserted(removalIndex);
+        notifyItemRemoved(removalIndex);
     }
 
     public void update(List<ProductData> productDataList){
         items.clear();
         items.addAll(productDataList);
         notifyDataSetChanged();
+    }
+
+    public void update(ProductData productData){
+        notifyItemChanged(items.indexOf(productData));
     }
 
     public interface ProductDataClickListener{
@@ -76,9 +81,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         Button deleteButton;
         Button addToCartButton;
 
-        ProductViewHolder(View itemView) {
+        ProductViewHolder(final View itemView) {
             super(itemView);
-
             initUiElements();
 
             selectionDetails.setOnClickListener(new View.OnClickListener() {
@@ -91,15 +95,17 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    items.remove(item);
-                    //TODO: delete from db
+                    removeItem(item);
+                    DbManager.removeFromDatabase(itemView.getContext(), item);
                 }
             });
 
             addToCartButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //TODO: add to cart
+                    item.inCart = true;
+                    update(item);
+                    listener.onItemChanged(item);
                 }
             });
         }

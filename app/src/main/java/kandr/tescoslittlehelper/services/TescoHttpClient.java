@@ -1,7 +1,6 @@
 package kandr.tescoslittlehelper.services;
 
 import kandr.tescoslittlehelper.data.ProductData;
-import kandr.tescoslittlehelper.helpers.DbHelper;
 
 public class TescoHttpClient implements TescoProductApi {
     @Override
@@ -39,6 +38,6 @@ public class TescoHttpClient implements TescoProductApi {
 //        {
 //            System.out.println(e.getMessage());
 //        }
-        return DbHelper.getMockedProductData(gtin);
+        return DbManager.getMockedProductData(gtin);
     }
 }

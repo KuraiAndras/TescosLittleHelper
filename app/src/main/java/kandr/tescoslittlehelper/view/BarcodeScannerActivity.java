@@ -1,7 +1,5 @@
 package kandr.tescoslittlehelper.view;
 
-import android.content.Context;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.SparseArray;
@@ -15,7 +13,7 @@ import java.util.List;
 import info.androidhive.barcode.BarcodeReader;
 import kandr.tescoslittlehelper.R;
 import kandr.tescoslittlehelper.data.ProductData;
-import kandr.tescoslittlehelper.helpers.DbHelper;
+import kandr.tescoslittlehelper.services.DbManager;
 import kandr.tescoslittlehelper.services.NetworkManager;
 import kandr.tescoslittlehelper.services.ProductDataHolder;
 
@@ -32,7 +30,7 @@ public class BarcodeScannerActivity extends AppCompatActivity implements Barcode
         btnAddMockedProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DbHelper.insertIntoDatabase(getApplicationContext(), DbHelper.getMockedProductData());
+                DbManager.insertIntoDatabase(getApplicationContext(), DbManager.getMockedProductData());
             }
         });
     }
@@ -44,7 +42,7 @@ public class BarcodeScannerActivity extends AppCompatActivity implements Barcode
     @Override
     public void onScanned(Barcode barcode) {
         ProductData productData = NetworkManager.getInstance().getProduct(barcode.displayValue);
-        DbHelper.insertIntoDatabase(getApplicationContext(), productData);
+        DbManager.insertIntoDatabase(getApplicationContext(), productData);
     }
 
     @Override
