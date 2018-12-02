@@ -13,6 +13,9 @@ public interface ProductDataDao {
     @Query("Select * FROM productdata")
     List<ProductData> getAll();
 
+    @Query("Select * FROM productdata WHERE gtin == :gtinQuery")
+    ProductData get(String gtinQuery);
+
     @Insert
     long insert(ProductData productData);
 

@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.vision.barcode.Barcode;
 
@@ -33,7 +34,7 @@ public class BarcodeScannerActivity extends AppCompatActivity implements Barcode
         btnAddMockedProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DbManager.insertIntoDatabase(getApplicationContext(), DbManager.getMockedProductData());
+                DbManager.insert(getApplicationContext(), DbManager.getMockedProductData());
                 vibrateAndFinish();
             }
         });
@@ -54,28 +55,26 @@ public class BarcodeScannerActivity extends AppCompatActivity implements Barcode
     @Override
     public void onScanned(Barcode barcode) {
         ProductData productData = NetworkManager.getInstance().getProduct(barcode.displayValue);
-        DbManager.insertIntoDatabase(getApplicationContext(), productData);
+        DbManager.insert(getApplicationContext(), productData);
         vibrateAndFinish();
     }
 
     @Override
     public void onScannedMultiple(List<Barcode> list) {
-        // multiple barcodes scanned
     }
 
     @Override
     public void onBitmapScanned(SparseArray<Barcode> sparseArray) {
-        // barcode scanned from bitmap image
     }
 
     @Override
     public void onScanError(String s) {
-        // scan error
     }
 
     @Override
     public void onCameraPermissionDenied() {
-        // camera permission denied
+        Toast.makeText(getApplicationContext(), "No permission to Camera", Toast.LENGTH_LONG).show();
+        finish();
     }
 
     @Override

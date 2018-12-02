@@ -3,12 +3,12 @@ package kandr.tescoslittlehelper.services;
 import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import java.util.List;
 import java.util.UUID;
 
 import kandr.tescoslittlehelper.data.ProductData;
+import kandr.tescoslittlehelper.data.ProductDataDao;
 import kandr.tescoslittlehelper.data.ProductDataDatabase;
 import kandr.tescoslittlehelper.view.adapters.ProductAdapter;
 
@@ -23,12 +23,14 @@ public class DbManager {
         return productDataDatabase;
     }
 
+    //TODO: proper migration
     private static ProductDataDatabase buildDatabase(Context context) {
         return Room.databaseBuilder(
                 context,
                 ProductDataDatabase.class,
                 DbNames.ProductDatabase
-        ).build();
+        ).fallbackToDestructiveMigration()
+                .build();
     }
 
     private DbManager() {
@@ -58,12 +60,16 @@ public class DbManager {
         static final String ProductDatabase = "productdata";
     }
 
-    public static void insertIntoDatabase(final Context applicationContext, final ProductData productData) {
+    public static void insert(final Context applicationContext, final ProductData productData) {
         new AsyncTask<Void, Void, Boolean>() {
 
             @Override
             protected Boolean doInBackground(Void... voids) {
-                getProductDataDatabaseInstance(applicationContext).productDataDao().insert(productData);
+                ProductDataDao dao = getProductDataDatabaseInstance(applicationContext).productDataDao();
+                ProductData data = dao.get(productData.gtin);
+                if(data == null){
+                    dao.insert(productData);
+                }
                 return true;
             }
         }.execute();
